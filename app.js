@@ -204,11 +204,36 @@ function findPersonFamily(person) {
     alert(personInfo);
 }
 
-function findPersonDescendants(person) {
-    let personInfo = `Children: ${data.filter(function(el){
-        if(el.parents.includes(person.id)){return true;}
-        else{return false;}
-    }).map(function(el){return el.firstName})}\n`
 
-    alert(personInfo);
-}
+
+
+// function findPersonDescendants(person) {
+//     let personInfo = `Children: ${data.filter(function(el){
+//         if(el.parents.includes(person.id)){return true;}
+//         else{return false;}
+//     }).map(function(el){return el.firstName})}\n`
+
+//     alert(personInfo);
+// }
+
+
+
+// function findPersonDescendants(person) {
+//     let personInfo = checkForChildren(person)
+
+//     // .map(function(el){return el.firstName})
+//     for(child in personInfo){
+//         personInfo += `Grandchildren ${checkForChildren(personInfo)}\n`
+//         child++}
+//     alert(personInfo);
+//     return descendants
+// }
+
+// function checkForChildren(person) {
+//     let children = data.filter(function(el){
+//         if(el.parents.includes(person.id)){return true;}
+//         else{return false;}
+//     })
+//     displayPeople(children)
+//     return children;
+// }
