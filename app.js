@@ -179,6 +179,10 @@ function yesNo(input) {
 }
 // End of yesNo()
 
+function idGenderHeightWeightEyecolorOccupation(input) {
+    return input.toLowerCase() === "eyecolor" || input.toLowerCase() === "id" || input.toLowerCase() === "gender" || input.toLowerCase() === "height" || input.toLowerCase() === "weight" || input.toLowerCase() === "occupation";
+}
+
 /**
  * This helper function operates as a default callback for promptFor's validation.
  * Feel free to modify this to suit your needs.
