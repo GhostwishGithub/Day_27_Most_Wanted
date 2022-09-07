@@ -216,21 +216,27 @@ function searchByTraits(input) {
     let inputResults;
     switch (userInput) {
         case "id":
+            input = prompt("Okay, so, what is their ID number? ")
             inputResults = searchByTrait(input);
             break;
         case "gender":
+            input = prompt("Okay, what is their gender? ")
             inputResults = searchByTrait(input);
             break;
         case "height":
+            input = prompt("How tall are they? ")
             inputResults = searchByTrait(input);
             break;
         case "weight":
+            input = prompt("How heavy are they? ")
             inputResults = searchByTrait(input);
             break;
         case "eyecolor":
+            input = prompt("What color are their eyes? ")
             inputResults = searchByTrait(input); // need to make sure this actually works
             break;
         case "occupation":
+            input = prompt("What do they do for a living? ")
             inputResults = searchByTrait(input);
             break;
         default:
