@@ -199,7 +199,16 @@ function findPersonFamily(person) {
     personInfo += `Siblings: ${data.filter(function(el){
         if(el.parents.includes(person.parents[0]) && (el.id != person.id)){return true;}
         else{return false;}
-    }).map(function(el){return el.id})}\n`
+    }).map(function(el){return el.firstName})}\n`
+
+    alert(personInfo);
+}
+
+function findPersonDescendants(person) {
+    let personInfo = `Children: ${data.filter(function(el){
+        if(el.parents.includes(person.id)){return true;}
+        else{return false;}
+    }).map(function(el){return el.firstName})}\n`
 
     alert(personInfo);
 }
