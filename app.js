@@ -179,10 +179,6 @@ function yesNo(input) {
 }
 // End of yesNo()
 
-function idGenderHeightWeightEyecolorOccupation(input) {
-    return input.toLowerCase() === "eyecolor" || input.toLowerCase() === "id" || input.toLowerCase() === "gender" || input.toLowerCase() === "height" || input.toLowerCase() === "weight" || input.toLowerCase() === "occupation";
-}
-
 /**
  * This helper function operates as a default callback for promptFor's validation.
  * Feel free to modify this to suit your needs.
@@ -208,7 +204,41 @@ function findPersonFamily(person) {
     alert(personInfo);
 }
 
+function idGenderHeightWeightEyecolorOccupation(input) {
+    return input.toLowerCase() === "eyecolor" || input.toLowerCase() === "id" || input.toLowerCase() === "gender" || input.toLowerCase() === "height" || input.toLowerCase() === "weight" || input.toLowerCase() === "occupation";
+}
 
+function searchByTraits(input) {
+    let userInput = promptFor(
+        "Okay, so, which trait would you like to search for? Options are: ID, gender, height, weight, eyecolor, or occupation? ",
+        idGenderHeightWeightEyecolorOccupation
+    ).toLowerCase();
+    let inputResults;
+    switch (userInput) {
+        case "id":
+            inputResults = searchByTrait(input);
+            break;
+        case "gender":
+            inputResults = searchByTrait(input);
+            break;
+        case "height":
+            inputResults = searchByTrait(input);
+            break;
+        case "weight":
+            inputResults = searchByTrait(input);
+            break;
+        case "eyecolor":
+            inputResults = searchByTrait(input); // need to make sure this actually works
+            break;
+        case "occupation":
+            inputResults = searchByTrait(input);
+            break;
+        default:
+            alert("Sorry champ, try again.")
+            searchByTraits(input)
+            break;
+    }
+}
 
 
 // function findPersonDescendants(person) {
