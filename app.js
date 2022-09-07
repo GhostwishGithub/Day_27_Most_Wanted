@@ -192,3 +192,14 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
+
+function findPersonFamily(person) {
+    let personInfo = `Parents: ${person.parents}\n`
+    personInfo += `Current spouse ID number: ${person.currentSpouse}\n`
+    personInfo += `Siblings: ${data.filter(function(el){
+        if(el.parents.includes(person.parents[0]) && (el.id != person.id)){return true;}
+        else{return false;}
+    }).map(function(el){return el.id})}\n`
+
+    alert(personInfo);
+}
