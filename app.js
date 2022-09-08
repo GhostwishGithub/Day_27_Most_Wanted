@@ -222,15 +222,15 @@ function searchByTraits(input) {
             break;
         case "gender":
             input = prompt("Okay, what is their gender? ")
-            inputResults = searchByTrait(input);
+            inputResults = searchByGender(input);
             break;
         case "height":
             input = prompt("How tall are they? ")
-            inputResults = searchByTrait(input);
+            inputResults = searchByHeight(input);
             break;
         case "weight":
             input = prompt("How heavy are they? ")
-            inputResults = searchByTrait(input);
+            inputResults = searchByWeight(input);
             break;
         case "eyecolor":
             input = prompt("What color are their eyes? ")
@@ -250,6 +250,30 @@ function searchByTraits(input) {
 function searchById(input) {
     let personInfo = data.filter(function(el){
         if(el.id == input){return true;}
+        else{return false}
+    })
+    return personInfo;
+}
+
+function searchByGender(input) {
+    let personInfo = data.filter(function(el){
+        if(el.gender == input){return true;}
+        else{return false}
+    })
+    return personInfo;
+}
+
+function searchByHeight(input) {
+    let personInfo = data.filter(function(el){
+        if(el.height == input){return true;}
+        else{return false}
+    })
+    return personInfo;
+}
+
+function searchByWeight(input) {
+    let personInfo = data.filter(function(el){
+        if(el.weight == input){return true;}
         else{return false}
     })
     return personInfo;
