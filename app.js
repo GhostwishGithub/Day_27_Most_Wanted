@@ -217,7 +217,8 @@ function searchByTraits(input) {
     switch (userInput) {
         case "id":
             input = prompt("Okay, so, what is their ID number? ")
-            inputResults = searchByTrait(input);
+            inputResults = searchById(input);
+            alert(inputResults.map(function(el){return el.firstName}))
             break;
         case "gender":
             input = prompt("Okay, what is their gender? ")
@@ -246,6 +247,13 @@ function searchByTraits(input) {
     }
 }
 
+function searchById(input) {
+    let personInfo = data.filter(function(el){
+        if(el.id == input){return true;}
+        else{return false}
+    })
+    return personInfo;
+}
 
 // function findPersonDescendants(person) {
 //     let personInfo = `Children: ${data.filter(function(el){
