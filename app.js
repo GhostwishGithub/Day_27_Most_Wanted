@@ -237,11 +237,11 @@ function searchByTraits(input) {
             break;
         case "eyecolor":
             input = prompt("What color are their eyes? ")
-            inputResults = searchByTrait(input); // need to make sure this actually works
+            inputResults = searchByEyecolor(input); // need to make sure this actually works
             break;
         case "occupation":
             input = prompt("What do they do for a living? ")
-            inputResults = searchByTrait(input);
+            inputResults = searchByOccupation(input);
             break;
         default:
             alert("Sorry champ, try again.")
@@ -281,6 +281,24 @@ function searchByWeight(input) {
     })
     return personInfo;
 }
+
+function searchByEyecolor(input) {
+    let personInfo = data.filter(function(el){
+        if(el.eyecolor == input){return true;}
+        else{return false}
+    })
+    return personInfo;
+}
+
+function searchByOccupation(input) {
+    let personInfo = data.filter(function(el){
+        if(el.occupation == input){return true;}
+        else{return false}
+    })
+    return personInfo;
+}
+
+
 
 // function findPersonDescendants(person) {
 //     let personInfo = `Children: ${data.filter(function(el){
