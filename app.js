@@ -223,14 +223,17 @@ function searchByTraits(input) {
         case "gender":
             input = prompt("Okay, what is their gender? ")
             inputResults = searchByGender(input);
+            alert(inputResults.map(function(el){return el.firstName}))
             break;
         case "height":
             input = prompt("How tall are they? ")
             inputResults = searchByHeight(input);
+            alert(inputResults.map(function(el){return el.firstName}))
             break;
         case "weight":
             input = prompt("How heavy are they? ")
             inputResults = searchByWeight(input);
+            alert(inputResults.map(function(el){return el.firstName}))
             break;
         case "eyecolor":
             input = prompt("What color are their eyes? ")
