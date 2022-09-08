@@ -31,7 +31,8 @@ function app(people) {
         case "no":
             //! TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////
                 //! TODO #4a: Provide option to search for single or multiple //////////////////////////////////////////
-            searchResults = searchByTraits(people);
+            let recursion = userInputCheck();
+            searchResults = searchByTraits(recursion);
             break;
         default:
             // Re-initializes the app() if neither case was hit above. This is an instance of recursion.
@@ -208,48 +209,64 @@ function idGenderHeightWeightEyecolorOccupation(input) {
     return input.toLowerCase() === "eyecolor" || input.toLowerCase() === "id" || input.toLowerCase() === "gender" || input.toLowerCase() === "height" || input.toLowerCase() === "weight" || input.toLowerCase() === "occupation";
 }
 
-function searchByTraits(input) {
-    let userInput = promptFor(
-        "Okay, so, which trait would you like to search for? Options are: ID, gender, height, weight, eyecolor, or occupation? ",
-        idGenderHeightWeightEyecolorOccupation
-    ).toLowerCase();
-    let inputResults;
-    switch (userInput) {
-        case "id":
-            input = prompt("Okay, so, what is their ID number? ")
-            inputResults = searchById(input);
-            alert(inputResults.map(function(el){return el.firstName}))
-            break;
-        case "gender":
-            input = prompt("Okay, what is their gender? ")
-            inputResults = searchByGender(input);
-            alert(inputResults.map(function(el){return el.firstName}))
-            break;
-        case "height":
-            input = prompt("How tall are they? ")
-            inputResults = searchByHeight(input);
-            alert(inputResults.map(function(el){return el.firstName}))
-            break;
-        case "weight":
-            input = prompt("How heavy are they? ")
-            inputResults = searchByWeight(input);
-            alert(inputResults.map(function(el){return el.firstName}))
-            break;
-        case "eyecolor":
-            input = prompt("What color are their eyes? ")
-            inputResults = searchByEyecolor(input); // need to make sure this actually works
-            alert(inputResults.map(function(el){return el.firstName}))
-            break;
-        case "occupation":
-            input = prompt("What do they do for a living? ")
-            inputResults = searchByOccupation(input);
-            alert(inputResults.map(function(el){return el.firstName}))
-            break;
-        default:
-            alert("Sorry champ, try again.")
-            searchByTraits(input)
-            break;
+function userInputCheck() {
+    let recursion = prompt(
+        "Very well. How many traits would you like to search by? Up to 5, by the way.")
+        if (recursion > 5){
+            alert("Five, buster, five is your limit!! Try again!")
+            return userInputCheck();
+        }
+        else{
+        return recursion
+        }
+}
+
+function searchByTraits(recursion) {
+    if(recursion > 0){
+        let userInput = promptFor(
+            "Okay, so, which trait would you like to search for? Options are: ID, gender, height, weight, eyecolor, or occupation? ",
+            idGenderHeightWeightEyecolorOccupation
+        ).toLowerCase();
+
+        let inputResults;
+        switch (userInput) {
+            case "id":
+                var input = prompt("Okay, so, what is their ID number? ")
+                inputResults = searchById(input);
+                alert(inputResults.map(function(el){return el.firstName}))
+                break;
+            case "gender":
+                var input = prompt("Okay, what is their gender? ")
+                inputResults = searchByGender(input);
+                alert(inputResults.map(function(el){return el.firstName}))
+                break;
+            case "height":
+                var input = prompt("How tall are they? ")
+                inputResults = searchByHeight(input);
+                alert(inputResults.map(function(el){return el.firstName}))
+                break;
+            case "weight":
+                var input = prompt("How heavy are they? ")
+                inputResults = searchByWeight(input);
+                alert(inputResults.map(function(el){return el.firstName}))
+                break;
+            case "eyecolor":
+                var input = prompt("What color are their eyes? ")
+                inputResults = searchByEyecolor(input); // need to make sure this actually works
+                alert(inputResults.map(function(el){return el.firstName}))
+                break;
+            case "occupation":
+                var input = prompt("What do they do for a living? ")
+                inputResults = searchByOccupation(input);
+                alert(inputResults.map(function(el){return el.firstName}))
+                break;
+            default:
+                alert("Sorry champ, try again.")
+                searchByTraits(input)
+                break;
+        }
     }
+    searchByTraits(recursion - 1)
 }
 
 function searchById(input) {
