@@ -238,10 +238,12 @@ function searchByTraits(input) {
         case "eyecolor":
             input = prompt("What color are their eyes? ")
             inputResults = searchByEyecolor(input); // need to make sure this actually works
+            alert(inputResults.map(function(el){return el.firstName}))
             break;
         case "occupation":
             input = prompt("What do they do for a living? ")
             inputResults = searchByOccupation(input);
+            alert(inputResults.map(function(el){return el.firstName}))
             break;
         default:
             alert("Sorry champ, try again.")
@@ -284,7 +286,7 @@ function searchByWeight(input) {
 
 function searchByEyecolor(input) {
     let personInfo = data.filter(function(el){
-        if(el.eyecolor == input){return true;}
+        if(el.eyeColor == input){return true;}
         else{return false}
     })
     return personInfo;
