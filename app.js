@@ -378,6 +378,7 @@ function askToNarrow(list){
 
 function holding(list){
     let newList = narrowSearchResults(list);
+    displayPeople(newList)
     askToNarrow(newList)
     return searchResults
 }
