@@ -80,7 +80,7 @@ function mainMenu(person, people) {
             //! TODO #3: Declare a findPersonDescendants function //////////////////////////////////////////
             // HINT: Review recursion lecture + demo for bonus user story
             let personDescendants = findPersonDescendants(person[0], people);
-            alert(personDescendants);
+            alert(displayPeople(personDescendants));
             break;
         case "restart":
             // Restart app() from the very beginning
@@ -330,22 +330,31 @@ function searchByOccupation(input) {
 
 
 
-// function findPersonDescendants(person) {
-//     let personInfo = checkForChildren(person)
+function findChildren(person, persons){
+    let children = persons.filter(function(el){
+        if(el.parents.includes(person.id)){return true;}
+        else{return false;}
+})
+    return children
+}
 
-//     // .map(function(el){return el.firstName})
-//     for(child in personInfo){
-//         personInfo += `Grandchildren ${checkForChildren(personInfo)}\n`
-//         child++}
-//     alert(personInfo);
-//     return descendants
-// }
+function findGrandchildren(persons){
+    for(let name of persons){
+        var grandchildren =
+        data.filter(function(el){
+            if(el.parents.includes(name.id))
+            {return true;}
+            else{return false;}
+    }) 
+    }
+    return grandchildren
+}
 
-// function checkForChildren(person) {
-//     let children = data.filter(function(el){
-//         if(el.parents.includes(person.id)){return true;}
-//         else{return false;}
-//     })
-//     displayPeople(children)
-//     return children;
-// }
+
+function findPersonDescendants(person, persons){
+    let children = findChildren(person, persons);
+    let grandchildren = findGrandchildren(children);
+    let allDescendants = children.concat(grandchildren);
+    return allDescendants 
+}
+
