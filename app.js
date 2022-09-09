@@ -31,7 +31,9 @@ function app(people) {
         case "no":
             //! TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////
                 //! TODO #4a: Provide option to search for single or multiple //////////////////////////////////////////
-            searchResults = searchByTraits();
+            searchResults = searchByTraits(data);
+            displayPeople(searchResults)
+            narrowSearchResults(searchResults)
             break;
         default:
             // Re-initializes the app() if neither case was hit above. This is an instance of recursion.
@@ -209,7 +211,7 @@ function idGenderHeightWeightEyecolorOccupation(input) {
 }
 
 
-function searchByTraits() {
+function searchByTraits(list) {
     let userInput = promptFor(
         "Okay, so, which trait would you like to search for? Options are: ID, gender, height, weight, eyecolor, or occupation? ",
         idGenderHeightWeightEyecolorOccupation
@@ -218,34 +220,28 @@ function searchByTraits() {
     switch (userInput) {
         case "id":
             var input = prompt("Okay, so, what is their ID number? ")
-            inputResults = searchById(input);
-            alert(inputResults.map(function(el){return el.firstName}))
-            break;
+            inputResults = searchById(input,list);
+            return inputResults
         case "gender":
             var input = prompt("Okay, what is their gender? ")
-            inputResults = searchByGender(input);
-            alert(inputResults.map(function(el){return el.firstName}))
-            break;
+            inputResults = searchByGender(input,list);
+            return inputResults
         case "height":
             var input = prompt("How tall are they? ")
-            inputResults = searchByHeight(input);
-            alert(inputResults.map(function(el){return el.firstName}))
-            break;
+            inputResults = searchByHeight(input, list);
+            return inputResults
         case "weight":
             var input = prompt("How heavy are they? ")
-            inputResults = searchByWeight(input);
-            alert(inputResults.map(function(el){return el.firstName}))
-            break;
+            inputResults = searchByWeight(input, list);
+            return inputResults
         case "eyecolor":
             var input = prompt("What color are their eyes? ")
-            inputResults = searchByEyecolor(input); // need to make sure this actually works
-            alert(inputResults.map(function(el){return el.firstName}))
-            break;
+            inputResults = searchByEyecolor(input, list); // need to make sure this actually works
+            return inputResults
         case "occupation":
             var input = prompt("What do they do for a living? ")
-            inputResults = searchByOccupation(input);
-            alert(inputResults.map(function(el){return el.firstName}))
-            break;
+            inputResults = searchByOccupation(input,list);
+            return inputResults
         default:
             alert("Sorry champ, try again.")
             searchByTraits(input)
@@ -254,64 +250,53 @@ function searchByTraits() {
 }
 
 
-function searchById(input) {
-    let personInfo = data.filter(function(el){
+function searchById(input, list) {
+    let personInfo = list.filter(function(el){
         if(el.id == input){return true;}
         else{return false}
     })
     return personInfo;
 }
 
-function searchByGender(input) {
-    let personInfo = data.filter(function(el){
+function searchByGender(input, list) {
+    let personInfo = list.filter(function(el){
         if(el.gender == input){return true;}
         else{return false}
     })
     return personInfo;
 }
 
-function searchByHeight(input) {
-    let personInfo = data.filter(function(el){
+function searchByHeight(input, list) {
+    let personInfo = list.filter(function(el){
         if(el.height == input){return true;}
         else{return false}
     })
     return personInfo;
 }
 
-function searchByWeight(input) {
-    let personInfo = data.filter(function(el){
+function searchByWeight(input, list) {
+    let personInfo = list.filter(function(el){
         if(el.weight == input){return true;}
         else{return false}
     })
     return personInfo;
 }
 
-function searchByEyecolor(input) {
-    let personInfo = data.filter(function(el){
+function searchByEyecolor(input, list) {
+    let personInfo = list.filter(function(el){
         if(el.eyeColor == input){return true;}
         else{return false}
     })
     return personInfo;
 }
 
-function searchByOccupation(input) {
-    let personInfo = data.filter(function(el){
+function searchByOccupation(input, list) {
+    let personInfo = list.filter(function(el){
         if(el.occupation == input){return true;}
         else{return false}
     })
     return personInfo;
 }
-
-
-
-// function findPersonDescendants(person) {
-//     let personInfo = `Children: ${data.filter(function(el){
-//         if(el.parents.includes(person.id)){return true;}
-//         else{return false;}
-//     }).map(function(el){return el.firstName})}\n`
-
-//     alert(personInfo);
-// }
 
 
 
@@ -343,3 +328,11 @@ function findPersonDescendants(person, persons){
     return allDescendants 
 }
 
+function narrowSearchResults(list){
+    let numberListItems = list.length
+    if(numberListItems = 0)
+        return alert("no results");
+    else(
+        searchByTraits(list)
+    )
+}
