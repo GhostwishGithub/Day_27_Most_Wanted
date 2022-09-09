@@ -227,45 +227,80 @@ function searchByTraits(list, userInput) {
         case "firstname":
             var input = prompt("Okay, so, what is their first name?")
             inputResults = searchByFirst(input,list);
-            
+            if(inputResults == false)
+            {
+                alert("No results found. Please try again.");
+                return searchByTraits(list, "firstname")
+            }
+            break;
         case "lastname":
             var input = prompt("Okay, so, what is their last name? ")
             inputResults = searchByLast(input,list);
-            return inputResults
+            if(inputResults == false)
+            {
+                alert("No results found. Please try again.");
+                return searchByTraits(list, "lastname")
+            }
+            break;
         case "id":
             var input = prompt("Okay, so, what is their ID number?")
             inputResults = searchById(input,list);
-            return inputResults
+            if(inputResults == false)
+            {
+                alert("No results found. Please try again.");
+                return searchByTraits(list, "id")
+            }
+            break;
         case "gender":
             var input = prompt("Okay, what is their gender? ")
             inputResults = searchByGender(input,list);
-            return inputResults
+            if(inputResults == false)
+            {
+                alert("No results found. Please try again.");
+                return searchByTraits(list, "gender")
+            }
+            break;
         case "height":
             var input = prompt("How tall are they? ")
             inputResults = searchByHeight(input, list);
-            return inputResults
+            if(inputResults == false)
+            {
+                alert("No results found. Please try again.");
+                return searchByTraits(list, "height")
+            }
+            break;
         case "weight":
             var input = prompt("How heavy are they? ")
             inputResults = searchByWeight(input, list);
-          
+            if(inputResults == false)
+            {
+                alert("No results found. Please try again.");
+                return searchByTraits(list, "weight")
+            }
+            break;
         case "eyecolor":
             var input = prompt("What color are their eyes? ")
             inputResults = searchByEyecolor(input, list); // need to make sure this actually works
-          
+            if(inputResults == false)
+            {
+                alert("No results found. Please try again.");
+                return searchByTraits(list, "eyecolor")
+            }
+            break;
         case "occupation":
             var input = prompt("What do they do for a living? ")
             inputResults = searchByOccupation(input,list);
-          
+            if(inputResults == false)
+            {
+                alert("No results found. Please try again.");
+                return searchByTraits(list, "occupation")
+            }
+            break;
         default:
             alert("Sorry champ, try again.")
             searchByTraits(input)
             break;
-        }
-
-
-
-
-        return inputResults
+    }return inputResults
 }
 
 
@@ -320,10 +355,6 @@ function searchByFirst(input, list) {
         if(el.firstName == input){return true;}
         else{return false}
     })
-    if(personInfo)
-        {alert("No results found. Please try again.");
-      
-    }
     return personInfo;
 }
 
@@ -438,10 +469,9 @@ function askToNarrow(list){
     }
 }
 
-function holding(list=data){
+function holding(list){
     let newList = narrowSearchResults(list);
     displayPeople(newList)
     askToNarrow(newList)
     return searchResults
 }
-holding()
