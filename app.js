@@ -303,53 +303,6 @@ function searchByTraits(list, userInput) {
     }return inputResults
 }
 
-
-// function searchByTraits(list) {
-//     let userInput = promptFor(
-//         "Okay, so, which trait would you like to search for? Options are: ID, gender, height, weight, eyecolor, firstname, lastname, or occupation? ",
-//         idGenderHeightWeightEyecolorOccupation
-//     ).toLowerCase();
-//     let inputResults;
-//     switch (userInput) {
-//         case "firstname":
-//             var input = prompt("Okay, so, what is their first name?")
-//             inputResults = searchByFirst(input,list);
-//             return inputResults
-//         case "lastname":
-//             var input = prompt("Okay, so, what is their last name? ")
-//             inputResults = searchByLast(input,list);
-//             return inputResults
-//         case "id":
-//             var input = prompt("Okay, so, what is their ID number?")
-//             inputResults = searchById(input,list);
-//             return inputResults
-//         case "gender":
-//             var input = prompt("Okay, what is their gender? ")
-//             inputResults = searchByGender(input,list);
-//             return inputResults
-//         case "height":
-//             var input = prompt("How tall are they? ")
-//             inputResults = searchByHeight(input, list);
-//             return inputResults
-//         case "weight":
-//             var input = prompt("How heavy are they? ")
-//             inputResults = searchByWeight(input, list);
-//             return inputResults
-//         case "eyecolor":
-//             var input = prompt("What color are their eyes? ")
-//             inputResults = searchByEyecolor(input, list); // need to make sure this actually works
-//             return inputResults
-//         case "occupation":
-//             var input = prompt("What do they do for a living? ")
-//             inputResults = searchByOccupation(input,list);
-//             return inputResults
-//         default:
-//             alert("Sorry champ, try again.")
-//             searchByTraits(input)
-//             break;
-//         }
-// }
-
 function searchByFirst(input, list) {
     let personInfo = list.filter(function(el){
         if(el.firstName == input){return true;}
@@ -455,6 +408,8 @@ function narrowSearchResults(list){
 }
 
 function askToNarrow(list){
+    let i = 1
+    while(i < 5){
     let searchType = promptFor("Do you want to narrow your results?",
     yesNo).toLowerCase();
     switch (searchType) {
@@ -467,6 +422,8 @@ function askToNarrow(list){
             askToNarrow();
             break;
     }
+    i++;
+}
 }
 
 function holding(list){
