@@ -33,7 +33,7 @@ function app(people) {
                 //! TODO #4a: Provide option to search for single or multiple //////////////////////////////////////////
             searchResults = searchByTraits(data);
             displayPeople(searchResults)
-            narrowSearchResults(searchResults)
+            askToNarrow(searchResults)
             break;
         default:
             // Re-initializes the app() if neither case was hit above. This is an instance of recursion.
@@ -332,7 +332,28 @@ function narrowSearchResults(list){
     let numberListItems = list.length
     if(numberListItems = 0)
         return alert("no results");
-    else(
-        searchByTraits(list)
-    )
+    else;
+        let newList = searchByTraits(list);
+        return newList
+}
+
+function askToNarrow(list){
+    let searchType = promptFor("Do you want to narrow your results?",
+    yesNo).toLowerCase();
+    switch (searchType) {
+        case "yes":
+            holding(list)
+        case "no":
+            displayPeople(list)
+            break;
+        default:
+            askToNarrow();
+            break;
+    }
+}
+
+function holding(list){
+    let newList = narrowSearchResults(list);
+    askToNarrow(newList)
+    return searchResults
 }
