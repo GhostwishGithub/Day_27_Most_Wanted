@@ -207,19 +207,28 @@ function findPersonFamily(person) {
 }
 
 function idGenderHeightWeightEyecolorOccupation(input) {
-    return input.toLowerCase() === "eyecolor" || input.toLowerCase() === "id" || input.toLowerCase() === "gender" || input.toLowerCase() === "height" || input.toLowerCase() === "weight" || input.toLowerCase() === "occupation";
+    return input.toLowerCase() === "eyecolor" || input.toLowerCase() === "id" || input.toLowerCase() === "gender" || input.toLowerCase() === "height" || input.toLowerCase() === "weight" || input.toLowerCase() === "occupation" ||
+    input.toLowerCase() === "firstname" || input.toLowerCase() === "lastname";
 }
 
 
 function searchByTraits(list) {
     let userInput = promptFor(
-        "Okay, so, which trait would you like to search for? Options are: ID, gender, height, weight, eyecolor, or occupation? ",
+        "Okay, so, which trait would you like to search for? Options are: ID, gender, height, weight, eyecolor, firstname, lastname, or occupation? ",
         idGenderHeightWeightEyecolorOccupation
     ).toLowerCase();
     let inputResults;
     switch (userInput) {
+        case "firstname":
+            var input = prompt("Okay, so, what is their first name?")
+            inputResults = searchByFirst(input,list);
+            return inputResults
+        case "lastname":
+            var input = prompt("Okay, so, what is their last name? ")
+            inputResults = searchByLast(input,list);
+            return inputResults
         case "id":
-            var input = prompt("Okay, so, what is their ID number? ")
+            var input = prompt("Okay, so, what is their ID number?")
             inputResults = searchById(input,list);
             return inputResults
         case "gender":
@@ -249,6 +258,21 @@ function searchByTraits(list) {
         }
 }
 
+function searchByFirst(input, list) {
+    let personInfo = list.filter(function(el){
+        if(el.firstName == input){return true;}
+        else{return false}
+    })
+    return personInfo;
+}
+
+function searchByLast(input, list) {
+    let personInfo = list.filter(function(el){
+        if(el.lastName == input){return true;}
+        else{return false}
+    })
+    return personInfo;
+}
 
 function searchById(input, list) {
     let personInfo = list.filter(function(el){
