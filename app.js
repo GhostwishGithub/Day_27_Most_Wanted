@@ -414,6 +414,8 @@ function searchByTraits(list = data){
     let userInput = promptForTraits()
     list = filterByTraits(list, userInput);
     displayPeople(list)
-    askToNarrow(list)
+    if(list.length > 1){
+        askToNarrow(list)
+    } 
     return list
 }
