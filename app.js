@@ -31,10 +31,7 @@ function app(people) {
         case "no":
             //! TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////
                 //! TODO #4a: Provide option to search for single or multiple //////////////////////////////////////////
-            let userInput = promptForTraits()
-            searchResults = searchByTraits(data, userInput);
-            displayPeople(searchResults)
-            askToNarrow(searchResults)
+            searchresults = searchByTraits()
             break;
         default:
             // Re-initializes the app() if neither case was hit above. This is an instance of recursion.
@@ -221,7 +218,7 @@ function promptForTraits(){
 }
 
 
-function searchByTraits(list, userInput) {
+function filterByTraits(list, userInput) {
     let inputResults;
     switch (userInput) {
         case "firstname":
@@ -230,7 +227,7 @@ function searchByTraits(list, userInput) {
             if(inputResults == false)
             {
                 alert("No results found. Please try again.");
-                return searchByTraits(list, "firstname")
+                return filterByTraits(list, "firstname")
             }
             break;
         case "lastname":
@@ -239,7 +236,7 @@ function searchByTraits(list, userInput) {
             if(inputResults == false)
             {
                 alert("No results found. Please try again.");
-                return searchByTraits(list, "lastname")
+                return filterByTraits(list, "lastname")
             }
             break;
         case "id":
@@ -248,7 +245,7 @@ function searchByTraits(list, userInput) {
             if(inputResults == false)
             {
                 alert("No results found. Please try again.");
-                return searchByTraits(list, "id")
+                return filterByTraits(list, "id")
             }
             break;
         case "gender":
@@ -257,7 +254,7 @@ function searchByTraits(list, userInput) {
             if(inputResults == false)
             {
                 alert("No results found. Please try again.");
-                return searchByTraits(list, "gender")
+                return filterByTraits(list, "gender")
             }
             break;
         case "height":
@@ -266,7 +263,7 @@ function searchByTraits(list, userInput) {
             if(inputResults == false)
             {
                 alert("No results found. Please try again.");
-                return searchByTraits(list, "height")
+                return filterByTraits(list, "height")
             }
             break;
         case "weight":
@@ -275,7 +272,7 @@ function searchByTraits(list, userInput) {
             if(inputResults == false)
             {
                 alert("No results found. Please try again.");
-                return searchByTraits(list, "weight")
+                return filterByTraits(list, "weight")
             }
             break;
         case "eyecolor":
@@ -284,7 +281,7 @@ function searchByTraits(list, userInput) {
             if(inputResults == false)
             {
                 alert("No results found. Please try again.");
-                return searchByTraits(list, "eyecolor")
+                return filterByTraits(list, "eyecolor")
             }
             break;
         case "occupation":
@@ -293,12 +290,12 @@ function searchByTraits(list, userInput) {
             if(inputResults == false)
             {
                 alert("No results found. Please try again.");
-                return searchByTraits(list, "occupation")
+                return filterByTraits(list, "occupation")
             }
             break;
         default:
             alert("Sorry champ, try again.")
-            searchByTraits(input)
+            filterByTraits(input)
             break;
     }return inputResults
 }
@@ -397,38 +394,26 @@ function findPersonDescendants(person, persons){
     return allDescendants 
 }
 
-function narrowSearchResults(list){
-    let numberListItems = list.length
-    if(numberListItems = 0)
-        return alert("no results");
-    else;
-        let userInput = promptForTraits()
-        let newList = searchByTraits(list, userInput);
-        return newList
-}
 
 function askToNarrow(list){
-    let i = 1
-    while(i < 5){
     let searchType = promptFor("Do you want to narrow your results?",
     yesNo).toLowerCase();
     switch (searchType) {
         case "yes":
-            holding(list)
+            return searchByTraits(list)
         case "no":
-            displayPeople(list)
-            break;
+            return displayPeople(list)
         default:
             askToNarrow();
             break;
     }
-    i++;
-}
 }
 
-function holding(list){
-    let newList = narrowSearchResults(list);
-    displayPeople(newList)
-    askToNarrow(newList)
-    return searchResults
+
+function searchByTraits(list = data){
+    let userInput = promptForTraits()
+    list = filterByTraits(list, userInput);
+    displayPeople(list)
+    askToNarrow(list)
+    return list
 }
