@@ -395,12 +395,12 @@ function findPersonDescendants(person, persons){
 }
 
 
-function askToNarrow(list){
+function askToNarrow(list, criteria){
     let searchType = promptFor("Do you want to narrow your results?",
     yesNo).toLowerCase();
     switch (searchType) {
         case "yes":
-            return searchByTraits(list)
+            return searchByTraits(list, criteria)
         case "no":
             return displayPeople(list)
         default:
@@ -410,12 +410,19 @@ function askToNarrow(list){
 }
 
 
-function searchByTraits(list = data){
+function searchByTraits(list = data, criteria){
     let userInput = promptForTraits()
     list = filterByTraits(list, userInput);
     displayPeople(list)
     if(list.length > 1){
-        askToNarrow(list)
+        maxCriteria(list, criteria)
     } 
     return list
+}
+
+function maxCriteria(list, criteria = 1){
+    while(criteria < 3){
+        criteria ++
+        askToNarrow(list, criteria)
+    }
 }
